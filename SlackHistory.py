@@ -25,8 +25,10 @@ class SlackHistory:
 
 		}
 
-		url = '{}{}?token={}&channel={}'.format(self._url, endpoint, self._token, payload["channel"])
+		url = '{}{}?token={}&channel={}&count=1000'.format(self._url, endpoint, self._token, payload["channel"])
 		headers = {"content_type":"application/x-www-form-urlencoded"}
+
+		##FIXME: Need to allow iterating to get all slack channel messages and collect therm into a list
 
 		result = requests.get(url, headers=headers)
 		return result.json()
@@ -39,5 +41,7 @@ if __name__ == '__main__':
 	result = sh._get_channels()
 	result2 = sh._get_history()
 
+
 	
-	print(result)
+
+	print(len(result2["messages"]))
