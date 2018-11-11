@@ -6,9 +6,9 @@ import time
 class SlackHistory:
 	def __init__(self, token, channel, message_limit=None):
 		self._token = token
-		self._channel = channel
 		self._message_limit = message_limit
 		self._url = "https://slack.com/api/"
+		self._channel = self._create_channel_map()[channel]
 
 	def _get_channels(self):
 		endpoint = "channels.list"
@@ -35,6 +35,14 @@ class SlackHistory:
 
 		result = requests.get(url, headers=headers)
 		return result.json()
+
+	def _create_channel_map(self):
+		channels = self._get_channels()['channels']
+		name_id_mapping = {}
+		for channel in channels:
+			name_id_mapping[channel['name']] = channel['id']
+
+		return name_id_mapping
 
 	def getAllHistory(self):
 		message_store = []
@@ -65,12 +73,12 @@ class SlackHistory:
 
 if __name__ == '__main__':
 	token = os.environ['SLACK_TOKEN']
+	channel = 'data_science_general'
 
-	sh = SlackHistory(token, "CACG2BXDY")
+	sh = SlackHistory(token, channel)
 
-	result = sh._get_channels()
-	result2 = sh.getAllHistory()
+	result = sh.getAllHistory()
 
-	print(result2)
+	print(result)
 
 	
