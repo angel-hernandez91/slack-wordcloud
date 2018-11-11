@@ -1,6 +1,7 @@
 import os
 import requests
 import json 
+import time
 
 class SlackHistory:
 	def __init__(self, token, channel, message_limit=None):
@@ -26,7 +27,7 @@ class SlackHistory:
 		if self._message_limit is not None:
 			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], self._message_limit)
 		else:
-			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], 2)
+			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], 1000)
 		headers = {"content_type":"application/x-www-form-urlencoded"}
 
 		if timestamp is not None and self._message_limit is None:
@@ -44,18 +45,19 @@ class SlackHistory:
 			has_more = True
 			for message in result['messages']:
 				message_store.append(message['text'])
-				timestamp_store.append(message['ts'])
+				timestamp_store.append(float(message['ts']))
 
-			max_ts = max(timestamp_store)
-			# while has_more:
-			# 	result = self._get_history(max_ts)
-			# 	has_more = result['has_more']
+			min_ts = min(timestamp_store)
+			while has_more:
+				result = self._get_history(min_ts)
+				has_more = result['has_more']
 
-			# 	for message in result['messages']:
-			# 		message_store.append(message['message'])
-			# 		timestamp_store.append(message['timestamp'])
+				for message in result['messages']:
+					message_store.append(message['text'])
+					timestamp_store.append(float(message['ts']))
 
-			# 	max_ts = max(timestamp_store)
+				min_ts = min(timestamp_store)
+				time.sleep(2)
 
 		return message_store
 
