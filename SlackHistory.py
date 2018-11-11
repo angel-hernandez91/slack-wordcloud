@@ -13,25 +13,53 @@ class SlackHistory:
 		endpoint = "channels.list"
 		url = '{}{}?token={}'.format(self._url, endpoint, self._token)
 		headers = {"content_type":"application/x-www-form-urlencoded"}
-		print(url)
 
 		result = requests.get(url, headers=headers)
 		return result.json()
 
-	def _get_history(self):
+	def _get_history(self, timestamp=None):
 		endpoint = "channels.history"
 		payload = {
 			"channel": self._channel,
 
 		}
-
-		url = '{}{}?token={}&channel={}&count=1000'.format(self._url, endpoint, self._token, payload["channel"])
+		if self._message_limit is not None:
+			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], self._message_limit)
+		else:
+			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], 2)
 		headers = {"content_type":"application/x-www-form-urlencoded"}
 
-		##FIXME: Need to allow iterating to get all slack channel messages and collect therm into a list
+		if timestamp is not None and self._message_limit is None:
+			url = '{}&inclusive=False&latest={}'.format(url, timestamp)
 
 		result = requests.get(url, headers=headers)
 		return result.json()
+
+	def getAllHistory(self):
+		message_store = []
+		timestamp_store = []
+
+		result = self._get_history()
+		if result['has_more'] == True:
+			has_more = True
+			for message in result['messages']:
+				message_store.append(message['text'])
+				timestamp_store.append(message['ts'])
+
+			max_ts = max(timestamp_store)
+			# while has_more:
+			# 	result = self._get_history(max_ts)
+			# 	has_more = result['has_more']
+
+			# 	for message in result['messages']:
+			# 		message_store.append(message['message'])
+			# 		timestamp_store.append(message['timestamp'])
+
+			# 	max_ts = max(timestamp_store)
+
+		return message_store
+
+
 
 if __name__ == '__main__':
 	token = os.environ['SLACK_TOKEN']
@@ -39,9 +67,8 @@ if __name__ == '__main__':
 	sh = SlackHistory(token, "CACG2BXDY")
 
 	result = sh._get_channels()
-	result2 = sh._get_history()
+	result2 = sh.getAllHistory()
 
+	print(result2)
 
 	
-
-	print(len(result2["messages"]))
