@@ -8,7 +8,7 @@ class GenerateWordCloud:
 
 	def generateWordCloud(self, save_image=None):
 		text = " ".join(self._text)
-		wordcloud = WordCloud().generate(text)
+		wordcloud = WordCloud(width=600,height=400,collocations=False).generate(text)
 
 		if save_image is True:
 			wordcloud.to_file("{}_wordcloud.png".format(channel))
