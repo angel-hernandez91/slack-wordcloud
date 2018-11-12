@@ -6,11 +6,13 @@ class GenerateWordCloud:
 	def __init__(self, text):
 		self._text = text
 
-	def generateWordCloud(self):
+	def generateWordCloud(self, save_image=None):
 		text = " ".join(self._text)
 		wordcloud = WordCloud().generate(text)
-		# The pil way (if you don't have matplotlib)
-		wordcloud.to_file("{}.png".format(channel))
+
+		if save_image is True:
+			wordcloud.to_file("{}_wordcloud.png".format(channel))
+
 		image = wordcloud.to_image()
 		image.show()
 
