@@ -1,0 +1,28 @@
+Metadata-Version: 2.1
+Name: slack-wordcloud
+Version: 0.2
+Summary: Generate word clouds for Slack channels!
+Home-page: https://github.com/angel-hernandez91/slack-wordcloud
+Author: Angel Hernandez
+Author-email: ahernandez0691@gmail.com
+License: MIT
+Description: # Slack Wordcloud
+        This package is intended to take the history of a given Slack Channel, and run it through a Python Wordcloud API, and generate a wordcloud image.
+        
+        This package uses the `channels.history` Slack endpoint and will require a valid Slack API Token.
+        
+        ## Installation
+        1. *pip-install pending*
+        
+        ## Classes
+        1. `SlackHistory(token, channel)`
+        2. `GenerateWordCloud(channel_text)`
+        
+        ## Command Line Usage
+        1. `slack-wordclound --token <SLACK_API_TOKEN> --channel <CHANNEL_NAME> [OUT_FILE_NAME]`
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown

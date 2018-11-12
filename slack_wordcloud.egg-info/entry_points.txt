@@ -1,0 +1,3 @@
+[console_scripts]
+slack_wordcloud = slack_wordcloud.cli:main
+

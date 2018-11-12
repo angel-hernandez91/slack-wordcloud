@@ -4,8 +4,8 @@ with open('README.md', 'r') as rm:
 	long_description = rm.read()
 
 setuptools.setup(
-	name='slack-wordcloud',
-	version='0.1',
+	name='slack_wordcloud',
+	version='0.2',
 	description='Generate word clouds for Slack channels!',
 	long_description=long_description,
 	long_description_content_type='text/markdown',
@@ -22,7 +22,7 @@ setuptools.setup(
 	],
 	entry_points = {
         'console_scripts': [
-            'slack-wordcloud=slack-wordcloud.cli:main',
+            'slack_wordcloud=slack_wordcloud.cli:main',
         ],
     }
 

@@ -1,0 +1,10 @@
+README.md
+slack_wordcloud/__init__.py
+slack_wordcloud/cli.py
+slack_wordcloud/wc.py
+slack_wordcloud.egg-info/PKG-INFO
+slack_wordcloud.egg-info/SOURCES.txt
+slack_wordcloud.egg-info/dependency_links.txt
+slack_wordcloud.egg-info/entry_points.txt
+slack_wordcloud.egg-info/not-zip-safe
+slack_wordcloud.egg-info/top_level.txt
