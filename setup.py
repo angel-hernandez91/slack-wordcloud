@@ -15,6 +15,8 @@ setuptools.setup(
 	license='MIT',
 	packages=setuptools.find_packages(),
 	zip_safe=False,
+	install_requires=['docopt'],
+	keywords=['cli', 'slack', 'wordcloud', 'app'],
 	classifiers= [
 		'Programming Language :: Python :: 3',
 		'License :: OSI Approved :: MIT License',

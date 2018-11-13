@@ -21,6 +21,7 @@ Description: # Slack Wordcloud
         ## Command Line Usage
         1. `slack-wordclound --token <SLACK_API_TOKEN> --channel <CHANNEL_NAME> [OUT_FILE_NAME]`
         
+Keywords: cli,slack,wordcloud,app
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License

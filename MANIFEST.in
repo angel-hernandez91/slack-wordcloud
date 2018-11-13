@@ -1,0 +1,10 @@
+exclude .gitignore
+exclude .coverage
+exclude wordlists
+include README.md
+prune .cache
+prune .git
+prune build
+prune dist
+recursive-exclude *.egg-info *
+recursive-include tests *
