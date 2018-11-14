@@ -4,8 +4,9 @@ This package is intended to take the history of a given Slack Channel, and run i
 This package uses the `channels.history` Slack endpoint and will require a valid Slack API Token.
 
 ## Installation
-1. `pip install slack_wordcloud`
-2. `docopt` and `wordcloud` are also required. Can be installed via `pip`
+1. `pip install slack-wordcloud`
+2. `docopt` and `wordcloud` are also required and can be installed via `pip`
+	* `pip install docopt wordcloud`
 
 ## Classes
 1. `SlackHistory(token, channel)`
