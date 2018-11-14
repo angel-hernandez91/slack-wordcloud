@@ -1,2 +1,3 @@
 wordlists/*
 slack_wordcloud/__pycache__/*
+.DS_STORE
