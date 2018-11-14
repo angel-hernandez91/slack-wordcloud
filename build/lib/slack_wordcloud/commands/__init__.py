@@ -1,1 +1,1 @@
-from .hello import *
+from .generate import *

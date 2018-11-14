@@ -9,4 +9,5 @@ slack_wordcloud/commands/SlackHistory.py
 slack_wordcloud/commands/__init__.py
 slack_wordcloud/commands/base.py
 slack_wordcloud/commands/generate.py
+slack_wordcloud/commands/generate_base.py
 slack_wordcloud/commands/hello.py
