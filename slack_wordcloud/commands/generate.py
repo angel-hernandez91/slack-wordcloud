@@ -1,32 +1,32 @@
 from . import SlackHistory
-from .base import Base
+from .generate_base import Base
 from wordcloud import WordCloud
 import os
 
 class GenerateWordCloud(Base):
-	def __init__(self, text):
-		self._text = text
-
-	def generateWordCloud(self, save_image=None):
-		text = " ".join(self._text)
-		wordcloud = WordCloud(width=600,height=400,collocations=False).generate(text)
-
-		if save_image is True:
-			wordcloud.to_file("{}_wordcloud.png".format(channel))
-
-		image = wordcloud.to_image()
-		image.show()
+	def __init__(self, options, *args, **kwargs):
+		super().__init__(self, options, *args, **kwargs)
 
 	def run(self):
-		token = os.environ['SLACK_TOKEN']
-		channel = 'cdl'
+		print(self.args[0])
+		try:
+			token = os.environ['SLACK_TOKEN']
+		except KeyError:
+			token = self.args[0]['--token']
+
+		channel = self.args[0]['--channel']
 		text = SlackHistory.SlackHistory(token, channel).getAllHistory()
 
-		wc = GenerateWordCloud(text).generateWordCloud()
+		
+		try:
+			if self.args[0]['--file'] is True:
+				wc = self.generateWordCloud(text, True)
+		except KeyError:
+			wc = self.generateWordCloud(text)
 
-if __name__ == '__main__':
-	token = os.environ['SLACK_TOKEN']
-	channel = 'cdl'
-	text = SlackHistory.SlackHistory(token, channel).getAllHistory()
+# if __name__ == '__main__':
+# 	token = os.environ['SLACK_TOKEN']
+# 	channel = 'cdl'
+# 	text = SlackHistory.SlackHistory(token, channel).getAllHistory()
 
-	wc = GenerateWordCloud(text).generateWordCloud()
+# 	wc = GenerateWordCloud(text).generateWordCloud()

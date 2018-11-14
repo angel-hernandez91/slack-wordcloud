@@ -2,16 +2,21 @@
 slack_worcloud
  
 Usage:
-  slack_wordcloud generate --token <slack_token> --channel <channel> [--file=outfile]
+  slack_wordcloud generate --channel <channel> [--token=token]
   slack_wordcloud -h | --help
   slack_wordcloud --version
  
 Options:
   -h --help                         Show this screen.
   --version                         Show version.
+  --token 							Slack API token.
+  --channel 						Slack channel name.
+  --file 							Ouput to file in current dir.
  
 Examples:
-  slack_wordloud generate [SLACK_TOKEN] [CHANNEL] [OUTFILE]
+  slack_wordcloud generate --channel my_channel
+  slack_wordcloud generate --channel my_channel --token $API_TOKEN
+  slack_wordcloud generate --channel my_channel --token $API_TOKEN --file
  
 Help:
   For help using this tool, please open an issue on the Github repository:
@@ -40,5 +45,6 @@ def main():
 			module = getattr(slack_wordcloud.commands, k)
 			slack_wordcloud.commands = getmembers(module, isclass)
 			command = [command[1] for command in slack_wordcloud.commands if command[0] != 'Base'][0]
+
 			command = command(options)
 			command.run()
