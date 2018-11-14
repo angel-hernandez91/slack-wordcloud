@@ -2,7 +2,7 @@
 slack_worcloud
  
 Usage:
-  slack_wordcloud hello 
+  slack_wordcloud generate 
   slack_wordcloud -h | --help
   slack_wordcloud --version
  

@@ -1,8 +1,9 @@
-from SlackHistory import SlackHistory
+from . import SlackHistory
+from .base import Base
 from wordcloud import WordCloud
 import os
 
-class GenerateWordCloud:
+class GenerateWordCloud(Base):
 	def __init__(self, text):
 		self._text = text
 
@@ -16,10 +17,16 @@ class GenerateWordCloud:
 		image = wordcloud.to_image()
 		image.show()
 
+	def run(self):
+		token = os.environ['SLACK_TOKEN']
+		channel = 'cdl'
+		text = SlackHistory.SlackHistory(token, channel).getAllHistory()
+
+		wc = GenerateWordCloud(text).generateWordCloud()
 
 if __name__ == '__main__':
 	token = os.environ['SLACK_TOKEN']
 	channel = 'cdl'
-	text = SlackHistory(token, channel).getAllHistory()
+	text = SlackHistory.SlackHistory(token, channel).getAllHistory()
 
 	wc = GenerateWordCloud(text).generateWordCloud()
