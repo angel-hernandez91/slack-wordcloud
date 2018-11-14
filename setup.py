@@ -5,7 +5,7 @@ with open('README.md', 'r') as rm:
 
 setuptools.setup(
 	name='slack_wordcloud',
-	version='0.2',
+	version='0.3-alpha',
 	description='Generate word clouds for Slack channels!',
 	long_description=long_description,
 	long_description_content_type='text/markdown',
