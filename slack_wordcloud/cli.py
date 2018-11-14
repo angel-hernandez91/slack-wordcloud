@@ -2,7 +2,7 @@
 slack_worcloud
  
 Usage:
-  slack_wordcloud generate 
+  slack_wordcloud generate --token <slack_token> --channel <channel> [--file=outfile]
   slack_wordcloud -h | --help
   slack_wordcloud --version
  
