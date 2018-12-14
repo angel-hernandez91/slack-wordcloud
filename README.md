@@ -5,7 +5,7 @@ This package uses the `channels.history` Slack endpoint and will require a valid
 
 ## Installation
 1. `pip install slack-wordcloud`
-2. `docopt` and `wordcloud` are also required and can be installed via `pip`
+2. The `docopt` and `wordcloud` packages are also required. They should be automatically installed simulaneously with `slack-wordcloud`. However, if it fails you can do the following:
 	* `pip install docopt wordcloud`
 
 ## Classes
