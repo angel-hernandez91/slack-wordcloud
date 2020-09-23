@@ -13,7 +13,7 @@ This package uses the `channels.history` Slack endpoint and will require a valid
 2. `GenerateWordCloud(options, *args, **kwargs)`
 
 ## Command Line Usage
-1. `slack-wordclound [-f] --channel <CHANNEL_NAME> [--token=SLACK_TOKEN]`
+1. `slack-wordcloud [-f] --channel <CHANNEL_NAME> [--token=SLACK_TOKEN]`
 	* `-f` will create a png file in your current directory of the output
 	* `--channel` is required. Any valid slack channel.
 	* `--token` optional argument if the token is already in your environment. Otherwise, you will need to pass it in.
