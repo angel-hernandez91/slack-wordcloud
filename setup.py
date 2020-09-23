@@ -5,7 +5,7 @@ with open('README.md', 'r') as rm:
 
 setuptools.setup(
 	name='slack_wordcloud',
-	version='0.3-alpha',
+	version='1.0',
 	description='Generate word clouds for Slack channels!',
 	long_description=long_description,
 	long_description_content_type='text/markdown',
@@ -15,7 +15,7 @@ setuptools.setup(
 	license='MIT',
 	packages=setuptools.find_packages(),
 	zip_safe=False,
-	install_requires=['docopt'],
+	install_requires=['docopt', 'wordcloud', 'requests'],
 	keywords=['cli', 'slack', 'wordcloud', 'app'],
 	classifiers= [
 		'Programming Language :: Python :: 3',
