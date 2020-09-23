@@ -3,6 +3,8 @@ import requests
 import json 
 import time
 
+class InvalidResponseException(Exception): pass
+
 class SlackHistory:
 	def __init__(self, token, channel, message_limit=None):
 		self._token = token
@@ -13,9 +15,12 @@ class SlackHistory:
 	def _get_channels(self):
 		endpoint = "channels.list"
 		url = '{}{}?token={}'.format(self._url, endpoint, self._token)
-		headers = {"content_type":"application/x-www-form-urlencoded"}
+		headers = {"content_type":"application/json"}
 
 		result = requests.get(url, headers=headers)
+		r = result.json()
+		if 'error' in r.keys():
+			raise InvalidResponseException(r['error'])
 		return result.json()
 
 	def _get_history(self, timestamp=None):
@@ -38,6 +43,7 @@ class SlackHistory:
 
 	def _create_channel_map(self):
 		channels = self._get_channels()['channels']
+
 		name_id_mapping = {}
 		for channel in channels:
 			name_id_mapping[channel['name']] = channel['id']

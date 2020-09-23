@@ -1,3 +1,6 @@
 wordlists/*
 slack_wordcloud/__pycache__/*
 .DS_Store
+slack_wordcloud/commands/__pycache__/*
+dist/*
+slack_wordcloud.egg-info/*
