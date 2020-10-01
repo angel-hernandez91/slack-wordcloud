@@ -1,7 +1,7 @@
 # Slack Wordcloud
 This package is intended to take the history of a given Slack Channel, and run it through a Python Wordcloud API, and generate a wordcloud image. Compatibile with Python 3.7+.
 
-This package uses the `channels.history` Slack endpoint and will require a valid Slack API Token.
+This package uses the `conversions.history` Slack endpoint and will require a valid Slack API Token.
 
 ## Installation
 1. `pip install slack-wordcloud`
