@@ -13,7 +13,7 @@ class SlackHistory:
 		self._channel = self._create_channel_map()[channel]
 
 	def _get_channels(self):
-		endpoint = "channels.list"
+		endpoint = "conversations.list"
 		url = '{}{}?token={}'.format(self._url, endpoint, self._token)
 		headers = {"content_type":"application/json"}
 
@@ -21,14 +21,15 @@ class SlackHistory:
 		r = result.json()
 		if 'error' in r.keys():
 			raise InvalidResponseException(r['error'])
-		return result.json()
+		return r
 
 	def _get_history(self, timestamp=None):
-		endpoint = "channels.history"
+		endpoint = "conversations.history"
 		payload = {
 			"channel": self._channel,
 
 		}
+		
 		if self._message_limit is not None:
 			url = '{}{}?token={}&channel={}&count={}'.format(self._url, endpoint, self._token, payload["channel"], self._message_limit)
 		else:
@@ -39,7 +40,10 @@ class SlackHistory:
 			url = '{}&inclusive=False&latest={}'.format(url, timestamp)
 
 		result = requests.get(url, headers=headers)
-		return result.json()
+		r = result.json()
+		if 'error' in r.keys():
+			raise InvalidResponseException(r['error'])
+		return r
 
 	def _create_channel_map(self):
 		channels = self._get_channels()['channels']
