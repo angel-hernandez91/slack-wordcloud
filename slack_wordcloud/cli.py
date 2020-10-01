@@ -7,11 +7,11 @@ Usage:
   slack_wordcloud --version
  
 Options:
-  -h --help                         Show this screen.
-  --version                         Show version.
-  --token 							Slack API token.
-  --channel 						Slack channel name.
-  --file 							Ouput to file in current dir.
+  -h --help     Show this screen.
+  --version     Show version.
+  --token 	Slack API token.
+  --channel 	Slack channel name.
+  --file 	Ouput to file in current dir.
  
 Examples:
   slack_wordcloud generate --channel my_channel

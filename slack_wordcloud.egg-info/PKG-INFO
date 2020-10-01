@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: slack-wordcloud
-Version: 1.0.2
+Version: 1.0.3
 Summary: Generate word clouds for Slack channels!
 Home-page: https://github.com/angel-hernandez91/slack-wordcloud
 Author: Angel Hernandez
