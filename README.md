@@ -17,3 +17,4 @@ This package uses the `conversions.history` Slack endpoint and will require a va
 	* `-f` will create a png file in your current directory of the output
 	* `--channel` is required. Any valid slack channel.
 	* `--token` optional argument if the token is already in your environment. Otherwise, you will need to pass it in.
+2. You will need to use Bot tokens and invite the Bot to the channel whose history you wish to fetch. This will hopefully be smoothed out in the future, but for now it's necessary due to the deprecation of the legacy tokens.
